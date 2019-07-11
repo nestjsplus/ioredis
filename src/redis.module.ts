@@ -1,66 +1,58 @@
 import { Module, DynamicModule, Global, Provider } from '@nestjs/common';
 import { RedisService } from './redis.service';
 import { REDIS_CONFIG_OPTS } from './constants';
-import { RedisAsyncOptions, RedisOptionsFactory } from './interfaces';
+import {
+  RedisModuleOptions,
+  RedisModuleAsyncOptions,
+  RedisOptionsFactory,
+} from './interfaces';
 
 @Global()
-@Module({})
+@Module({
+  providers: [RedisService],
+  exports: [RedisService],
+})
 export class RedisModule {
-  public static forRoot(options): DynamicModule {
+  static register(options: RedisModuleOptions): DynamicModule {
     return {
       module: RedisModule,
       providers: [
         {
-          name: REDIS_CONFIG_OPTS,
           provide: REDIS_CONFIG_OPTS,
           useValue: options,
         },
-        RedisService,
       ],
-      exports: [REDIS_CONFIG_OPTS, RedisService],
     };
   }
 
-  public static forRootAsync(options: RedisAsyncOptions): DynamicModule {
-    // const providers: Provider[] = this.createAsyncProviders(options);
-
+  static registerAsync(options: RedisModuleAsyncOptions): DynamicModule {
     return {
       module: RedisModule,
-      providers: [
-        {
-          name: REDIS_CONFIG_OPTS,
-          provide: REDIS_CONFIG_OPTS,
-          useFactory: async (optionsFactory: RedisOptionsFactory) => {
-            return optionsFactory.createRedisOptions();
-          },
-          inject: [options.useExisting || options.useClass],
-        },
-        RedisService,
-      ],
-      imports: options.imports,
-      exports: [REDIS_CONFIG_OPTS, RedisService],
+      imports: options.imports || [],
+      providers: this.createAsyncProviders(options),
     };
   }
 
-  private static createAsyncProviders(options: RedisAsyncOptions): Provider[] {
-    const providers: Provider[] = [this.createAsyncOptionsProvider(options)];
-
-    if (options.useClass) {
-      providers.push({
+  private static createAsyncProviders(
+    options: RedisModuleAsyncOptions,
+  ): Provider[] {
+    if (options.useExisting || options.useFactory) {
+      return [this.createAsyncOptionsProvider(options)];
+    }
+    return [
+      this.createAsyncOptionsProvider(options),
+      {
         provide: options.useClass,
         useClass: options.useClass,
-      });
-    }
-
-    return providers;
+      },
+    ];
   }
 
   private static createAsyncOptionsProvider(
-    options: RedisAsyncOptions,
+    options: RedisModuleAsyncOptions,
   ): Provider {
     if (options.useFactory) {
       return {
-        name: REDIS_CONFIG_OPTS,
         provide: REDIS_CONFIG_OPTS,
         useFactory: options.useFactory,
         inject: options.inject || [],

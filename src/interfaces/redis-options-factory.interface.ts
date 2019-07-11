@@ -1,5 +1,5 @@
-import { RedisOptions } from './redis-options.interface';
+import { RedisModuleOptions } from './redis-module-options.interface';
 
 export interface RedisOptionsFactory {
-  createRedisOptions(): Promise<RedisOptions> | RedisOptions;
+  createRedisOptions(): Promise<RedisModuleOptions> | RedisModuleOptions;
 }
