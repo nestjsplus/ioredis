@@ -1,6 +1,6 @@
 {
-  "name": "nest-ioredis",
-  "version": "1.0.2",
+  "name": "@stackmason/nest-ioredis",
+  "version": "1.0.4",
   "description": "Configurable ioRedis Module for NestJs",
   "main": "index.js",
   "scripts": {

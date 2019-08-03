@@ -1,6 +1,5 @@
-<h1 align="center">NestJs Configuration Manager</h1>
+<h1 align="center">Configurable ioRedis module for NestJS</h1>
 
-<h3 align="center">Flexible, Docker-friendly, Dotenv-based Configuration Module for NestJs</h3>
 
 <div align="center">
   <a href="https://github.com/johnbiundo/nestjs-config-manager/blob/master/LICENSE">
