@@ -1,12 +1,12 @@
-<h1 align="center">Configurable ioRedis module for NestJS</h1>
+<h1 align="center">Configurable ioredis module for NestJS</h1>
 
 
 <div align="center">
   <a href="https://github.com/johnbiundo/nestjs-config-manager/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="License" />
   </a>
-  <a href="https://badge.fury.io/js/nestjs-config-manager">
-    <img src="https://badge.fury.io/js/nestjs-config-manager.svg" alt="npm version" height="18">
+  <a href="https://badge.fury.io/js/%40nestjsplus%2Fioredis">
+    <img src="https://badge.fury.io/js/%40nestjsplus%2Fioredis.svg" alt="npm version" height="18">
   </a>
 </div>
 
