@@ -1,6 +1,6 @@
 {
-  "name": "@stackmason/nest-ioredis",
-  "version": "1.0.4",
+  "name": "@nestjsplus/ioredis",
+  "version": "1.0.5",
   "description": "Configurable ioRedis Module for NestJs",
   "main": "index.js",
   "scripts": {
@@ -28,9 +28,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/johnbiundo/nestjs-ioredis"
+    "url": "https://github.com/nestjsplus/nestjs-ioredis"
   },
-  "bugs": "https://github.com/johnbiundo/nestjs-ioredis/issues",
+  "bugs": "https://github.com/nestjsplus/nestjs-ioredisissues",
   "peerDependencies": {
     "@nestjs/common": "^6.0.0"
   },
@@ -52,6 +52,9 @@
     "tslint": "5.16.0",
     "typescript": "3.4.3",
     "wait-on": "^3.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "jest": {
     "moduleFileExtensions": [
